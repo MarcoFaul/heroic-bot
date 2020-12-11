@@ -1,13 +1,15 @@
 {
-  "name": "Heroic Test Bot",
-  "description": "Heroic Test Bot",
-  "version": "0.0.1",
-  "main": "bot.js",
+  "name": "HeroicBot",
+  "description": "Heroic Bot",
+  "version": "0.5.0",
+  "main": "index.js",
   "scripts": {
-    "start": "node bot.js"
+    "start": "node index.js"
   },
   "dependencies": {
-    "discord.js": "11.1.0",
-    "request": "2.81.0"
+    "ascii-table": "0.0.9",
+    "canvas": "^2.6.1",
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0"
   }
 }
