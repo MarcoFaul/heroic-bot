@@ -5,5 +5,6 @@ module.exports = {
     position: 10,
     description: "Commander",
     src: __dirname + '/png/commander.png',
-    legendaryOrMythic: false
+    legendary: false,
+    mythical: false
 }

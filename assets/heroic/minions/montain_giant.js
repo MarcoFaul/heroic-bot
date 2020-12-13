@@ -5,5 +5,6 @@ module.exports = {
     position: 50,
     description: "Mountain Giant",
     src: __dirname + '/png/mountain_giant.png',
-    legendaryOrMythic: false
+    legendary: false,
+    mythical: false
 }

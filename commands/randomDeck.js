@@ -24,15 +24,19 @@ for (const minionFile of minions) {
 module.exports = {
     name: "random",
     aliases: ["r"],
-    description: "Generates a random deck for both users",
+    description: "Generates a random deck for both players",
+    arguments: [{
+       '-no-mythicals': 'No mythical minion should be included',
+       '-no-legnaries': 'No legendary minion should be included',
+       '-unique': 'Every minion is unique',
+    }],
     run: async (client, message, args) => {
 
+        // get random hero and minions for both teams
         const team1Hero = getRandomItem(heroCollection);
         const team2Hero = getRandomItem(heroCollection);
-
-        //@TODO: it should be possible to to have minions 2x (if not legendaryMythical === true)
-        const team1Minions = getNRandomItems(minionCollection.array(), maxMinions);
-        const team2Minions = getNRandomItems(minionCollection.array(), maxMinions);
+        const team1Minions = getRandomMinions(minionCollection, maxMinions, args).array();
+        const team2Minions = getRandomMinions(minionCollection, maxMinions, args).array();
 
         // create background image
         const canvas = Canvas.createCanvas(2000, 1000);
@@ -68,8 +72,58 @@ function getRandomItem(iterable) {
     return iterable.get([...iterable.keys()][Math.floor(Math.random() * iterable.size)])
 }
 
-function getNRandomItems(array, n) {
-    return array.sort(() => Math.random() - Math.random()).slice(0, n)
+function getRandomMinions(itemsCollection, n, args) {
+    let restructuredItems = new Discord.Collection();
+    let alreadyFilledMinions = new Discord.Collection();
+
+    for (let i = 1; i <= n; i++) {
+
+        let item = itemsCollection.random()
+
+        // remove mythical minions if the argument is set
+        if (args.includes('-no-mythicals') && item.mythical === true) {
+            i--;
+            continue;
+        }
+
+        // remove legendarie minions if the argument is set
+        if (args.includes('-no-legendaries') && item.legendary === true) {
+            i--;
+            continue;
+        }
+
+        if (alreadyFilledMinions.has(item.name) === false) {
+            restructuredItems.set(i, item)
+            alreadyFilledMinions.set(item.name, 1); // we can hardcode the value
+            continue;
+        }
+
+        // every minion should available once
+        if (args.includes('-unique')) {
+            i--;
+            continue;
+        }
+
+        if (item.legendary === true) {
+            i--;
+            continue;
+        }
+
+        // max minion count of one minion is 2
+        if (alreadyFilledMinions.get(item.name) === 2) {
+            i--;
+            continue;
+        }
+
+        restructuredItems.set(i, item);
+        alreadyFilledMinions.set(item.name, 2); // we can hardcode the value
+    }
+
+    return restructuredItems;
+}
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * (max - 1)) + 1;
 }
 
 

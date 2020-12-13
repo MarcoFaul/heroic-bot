@@ -5,5 +5,6 @@ module.exports = {
     position: 49,
     description: "Undead Raid",
     src: __dirname + '/png/undead_raid.png',
-    legendaryOrMythic: false
+    legendary: false,
+    mythical: false
 }

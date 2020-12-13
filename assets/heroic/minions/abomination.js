@@ -5,5 +5,6 @@ module.exports = {
     position: 59,
     description: "Abomination",
     src: __dirname + '/png/abomination.png',
-    legendaryOrMythic: false
+    legendary: false,
+    mythical: false
 }

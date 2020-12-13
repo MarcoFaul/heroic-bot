@@ -5,5 +5,6 @@ module.exports = {
     position: 23,
     description: "Feareless Leader",
     src: __dirname + '/png/feareless_leader.png',
-    legendaryOrMythic: false
+    legendary: false,
+    mythical: false
 }

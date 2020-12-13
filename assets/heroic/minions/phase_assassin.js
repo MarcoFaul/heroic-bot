@@ -5,5 +5,6 @@ module.exports = {
     position: 31,
     description: "Phase Assassin",
     src: __dirname + '/png/phase_assassin.png',
-    legendaryOrMythic: true
+    legendary: true,
+    mythical: false
 }

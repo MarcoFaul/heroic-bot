@@ -5,5 +5,6 @@ module.exports = {
     position: 6,
     description: "Undead Horde",
     src: __dirname + '/png/undead_horde.png',
-    legendaryOrMythic: false
+    legendary: false,
+    mythical: false
 }

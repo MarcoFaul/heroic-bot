@@ -5,5 +5,6 @@ module.exports = {
     position: 52,
     description: "Stone Elemental",
     src: __dirname + '/png/stone_elemental.png',
-    legendaryOrMythic: false
+    legendary: false,
+    mythical: false
 }

@@ -5,5 +5,6 @@ module.exports = {
     position: 27,
     description: "Soul Leech",
     src: __dirname + '/png/soul_leech.png',
-    legendaryOrMythic: true
+    legendary: true,
+    mythical: false
 }

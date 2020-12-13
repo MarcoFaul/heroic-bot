@@ -5,5 +5,6 @@ module.exports = {
     position: 39,
     description: "Ice Witch",
     src: __dirname + '/png/ice_witch.png',
-    legendaryOrMythic: true
+    legendary: false,
+    mythical: true
 }

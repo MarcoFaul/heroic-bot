@@ -5,5 +5,6 @@ module.exports = {
     position: 13,
     description: "Punisher",
     src: __dirname + '/png/punisher.png',
-    legendaryOrMythic: true
+    legendary: true,
+    mythical: false
 }

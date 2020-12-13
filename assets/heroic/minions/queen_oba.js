@@ -5,5 +5,6 @@ module.exports = {
     position: 46,
     description: "Queen Oba",
     src: __dirname + '/png/queen_oba.png',
-    legendaryOrMythic: true
+    legendary: false,
+    mythical: true
 }

@@ -5,5 +5,6 @@ module.exports = {
     position: 51,
     description: "Elite Archers",
     src: __dirname + '/png/elite_archers.png',
-    legendaryOrMythic: false
+    legendary: false,
+    mythical: false
 }

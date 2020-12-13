@@ -5,5 +5,6 @@ module.exports = {
     position: 12,
     description: "Ravenous Scourge",
     src: __dirname + '/png/ravenous_scourge.png',
-    legendaryOrMythic: false
+    legendary: false,
+    mythical: false
 }

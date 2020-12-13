@@ -5,5 +5,6 @@ module.exports = {
     position: 43,
     description: "Amazon",
     src: __dirname + '/png/amazon.png',
-    legendaryOrMythic: false
+    legendary: false,
+    mythical: false
 }

@@ -5,5 +5,6 @@ module.exports = {
     position: 14,
     description: "Magic Construct",
     src: __dirname + '/png/magic_construct.png',
-    legendaryOrMythic: false
+    legendary: false,
+    mythical: false
 }

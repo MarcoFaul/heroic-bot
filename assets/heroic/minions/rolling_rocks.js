@@ -5,5 +5,6 @@ module.exports = {
     position: 1,
     description: "Rolling Rocks",
     src: __dirname + '/png/rolling_rocks.png',
-    legendaryOrMythic: false
+    legendary: false,
+    mythical: false
 }

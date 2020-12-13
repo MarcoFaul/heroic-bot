@@ -5,5 +5,6 @@ module.exports = {
     position: 42,
     description: "Hellfiend",
     src: __dirname + '/png/hellfiend.png',
-    legendaryOrMythic: true
+    legendary: true,
+    mythical: false
 }

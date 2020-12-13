@@ -5,5 +5,6 @@ module.exports = {
     position: 22,
     description: "valkyrie",
     src: __dirname + '/png/Valkyrie.png',
-    legendaryOrMythic: false
+    legendary: false,
+    mythical: false
 }

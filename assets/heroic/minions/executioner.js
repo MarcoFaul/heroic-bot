@@ -5,5 +5,6 @@ module.exports = {
     position: 30,
     description: "Executioner",
     src: __dirname + '/png/executioner.png',
-    legendaryOrMythic: false
+    legendary: false,
+    mythical: false
 }

@@ -5,5 +5,6 @@ module.exports = {
     position: 20,
     description: "Goblin Marksman",
     src: __dirname + '/png/goblin_marksman.png',
-    legendaryOrMythic: false
+    legendary: false,
+    mythical: false
 }

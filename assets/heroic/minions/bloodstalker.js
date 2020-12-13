@@ -5,5 +5,6 @@ module.exports = {
     position: 35,
     description: "Bloodstalker",
     src: __dirname + '/png/bloodstalker.png',
-    legendaryOrMythic: true
+    legendary: true,
+    mythical: false
 }

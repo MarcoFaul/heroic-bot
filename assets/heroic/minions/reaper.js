@@ -5,5 +5,6 @@ module.exports = {
     position: 18,
     description: "Reaper",
     src: __dirname + '/png/reaper.png',
-    legendaryOrMythic: false
+    legendary: false,
+    mythical: false
 }

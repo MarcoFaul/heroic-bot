@@ -5,5 +5,6 @@ module.exports = {
     position: 11,
     description: "Rune Cannon",
     src: __dirname + '/png/rune_cannon.png',
-    legendaryOrMythic: true
+    legendary: true,
+    mythical: false
 }

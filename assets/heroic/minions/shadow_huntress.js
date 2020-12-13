@@ -5,5 +5,6 @@ module.exports = {
     position: 41,
     description: "Shadow Huntress",
     src: __dirname + '/png/shadow_huntress.png',
-    legendaryOrMythic: false
+    legendary: false,
+    mythical: false
 }

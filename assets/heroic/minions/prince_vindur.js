@@ -5,5 +5,6 @@ module.exports = {
     position: 38,
     description: "Prince Vindur",
     src: __dirname + '/png/prince_vindur.png',
-    legendaryOrMythic: true
+    legendary: false,
+    mythical: true
 }

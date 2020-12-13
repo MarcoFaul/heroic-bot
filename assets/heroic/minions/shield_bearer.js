@@ -5,5 +5,6 @@ module.exports = {
     position: 21,
     description: "Shield Bearer",
     src: __dirname + '/png/shield_bearer.png',
-    legendaryOrMythic: false
+    legendary: false,
+    mythical: false
 }

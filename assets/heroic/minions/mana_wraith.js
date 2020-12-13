@@ -5,5 +5,6 @@ module.exports = {
     position: 34,
     description: "Mana Wraith",
     src: __dirname + '/png/mana_wraith.png',
-    legendaryOrMythic: true
+    legendary: true,
+    mythical: false
 }
