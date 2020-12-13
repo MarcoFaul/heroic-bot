@@ -25,7 +25,7 @@ module.exports = {
     name: "random",
     aliases: ["r"],
     description: "Generates a random deck for both players",
-    usage: "random [**-no-mythicals**': No mythical minion should be included | **-no-legnaries**: No legendary minion should be included | **-unique**: Every minion is unique]",
+    usage: "random [**-no-mythicals**': No mythical minion should be included | **-no-legendaries**: No legendary minion should be included | **-unique**: Every minion is unique]",
     run: async (client, message, args) => {
 
         // get random hero and minions for both teams
