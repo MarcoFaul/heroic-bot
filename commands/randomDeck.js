@@ -25,11 +25,7 @@ module.exports = {
     name: "random",
     aliases: ["r"],
     description: "Generates a random deck for both players",
-    arguments: [{
-       '-no-mythicals': 'No mythical minion should be included',
-       '-no-legnaries': 'No legendary minion should be included',
-       '-unique': 'Every minion is unique',
-    }],
+    usage: "random [**-no-mythicals**': No mythical minion should be included | **-no-legnaries**: No legendary minion should be included | **-unique**: Every minion is unique]",
     run: async (client, message, args) => {
 
         // get random hero and minions for both teams
@@ -86,7 +82,7 @@ function getRandomMinions(itemsCollection, n, args) {
             continue;
         }
 
-        // remove legendarie minions if the argument is set
+        // remove legendary minions if the argument is set
         if (args.includes('-no-legendaries') && item.legendary === true) {
             i--;
             continue;
@@ -121,11 +117,6 @@ function getRandomMinions(itemsCollection, n, args) {
 
     return restructuredItems;
 }
-
-function getRandomInt(max) {
-    return Math.floor(Math.random() * (max - 1)) + 1;
-}
-
 
 async function placeMinionsOnHeroTemplate(ctx, minions, lower = false) {
     let index = 0;
