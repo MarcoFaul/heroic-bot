@@ -4,7 +4,7 @@ module.exports = {
     name: "valkyrie",
     position: 22,
     description: "valkyrie",
-    src: __dirname + '/png/Valkyrie.png',
+    src: __dirname + '/png/valkyrie.png',
     legendary: false,
     mythical: false
 }
