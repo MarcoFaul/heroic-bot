@@ -20,13 +20,21 @@ for (const minionFile of minions) {
     minionCollection.set(minion.position, minion)
 }
 
-
 module.exports = {
-    name: "random",
-    aliases: ["r"],
-    description: "Generates a random deck for both players",
-    usage: "random [**-no-mythicals**': No mythical minion should be included | **-no-legendaries**: No legendary minion should be included | **-unique**: Every minion is unique]",
+    name: "challenge",
+    aliases: ["vs", "fight", "c"],
+    description: "Generates a random deck for two players",
+    usage: "random <@userName>|<userName> \n[**-no-mythicals**': No mythical minion should be included \n **-no-legendaries**: No legendary minion should be included \n **-unique**: Every minion is unique]",
     run: async (client, message, args) => {
+
+        let secondTeamName = '';
+        if (message.mentions.users.size) {
+            secondTeamName = message.mentions.users.first().username;
+        }
+        let firstArg = args[0];
+        if (secondTeamName === '' && firstArg !== '' && !firstArg.includes('-')) {
+            secondTeamName = firstArg;
+        }
 
         // get random hero and minions for both teams
         const team1Hero = getRandomItem(heroCollection);
@@ -44,12 +52,12 @@ module.exports = {
         // place team 1 image on background
         const team1Image = await Canvas.loadImage(team1Hero.src);
         ctx.drawImage(team1Image, 0, 0, 2000, 500);
-        await placeMinionsOnHeroTemplate(ctx, team1Minions);
+        await placeMinionsOnHeroTemplate(ctx, team1Minions, message.author.username);
 
         // place team 1 image on background
         const team2Image = await Canvas.loadImage(team2Hero.src);
         ctx.drawImage(team2Image, 0, 500, 2000, 500);
-        await placeMinionsOnHeroTemplate(ctx, team2Minions, true);
+        await placeMinionsOnHeroTemplate(ctx, team2Minions, secondTeamName, true);
 
         // create the "VS" image in the middle
         const vsImage = await Canvas.loadImage(__dirname + '/../assets/heroic/layout/vs.png');
@@ -60,7 +68,12 @@ module.exports = {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'random-deck-image.png');
 
         // send the attachment in the message channel with a content
-        message.channel.send(`${message.author},`, attachment);
+        message.channel.send(`${message.author}, ${args[0]}`, attachment).then(function (message) {
+            message.react("👊")
+            message.react("🥊")
+        }).catch(function() {
+            //just for the case. But we do not need to handle it
+        });
     }
 }
 
@@ -118,7 +131,7 @@ function getRandomMinions(itemsCollection, n, args) {
     return restructuredItems;
 }
 
-async function placeMinionsOnHeroTemplate(ctx, minions, lower = false) {
+async function placeMinionsOnHeroTemplate(ctx, minions, teamText, lower = false) {
     let index = 0;
     let mapping = getMapping()
 
@@ -138,11 +151,11 @@ async function placeMinionsOnHeroTemplate(ctx, minions, lower = false) {
         index++;
     }
 
-    addTeamText(ctx, lower);
+    addTeamText(ctx, teamText, lower);
 }
 
 
-function addTeamText(ctx, lower = false) {
+function addTeamText(ctx, teamText = '', lower = false) {
     ctx.save();
     if (!lower) {
         ctx.translate(100, 350);
@@ -155,11 +168,28 @@ function addTeamText(ctx, lower = false) {
     ctx.fillStyle = '#e31717';
     ctx.font = "80px Arial"
 
-    if (!lower) {
-        ctx.fillText("Team 1", 100, 0);
-    } else {
-        ctx.fillText("Team 2", 100, 0);
+    if (teamText === '' && lower === false) {
+        teamText = 'Team 1';
     }
 
+    if (teamText === '' && lower === true) {
+        teamText = 'Team 2';
+    }
+    ctx.font = applyText(ctx, teamText);
+    ctx.fillText(teamText, 100, 0);
+
     ctx.restore();
+}
+
+function applyText(ctx, text) {
+    // base font size
+    let fontSize = 100;
+    do {
+        // assign the font to the context and decrement it so it can be measured again
+        ctx.font = `${fontSize -= 10}px sans-serif`;
+        // compare pixel width of the text to the canvas minus the approximate avatar size
+    } while (ctx.measureText(text).width > 500);
+
+    // return the result to use in the actual canvas
+    return ctx.font;
 }

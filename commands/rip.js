@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: "rip",
-    aliases: ["rip"],
+    aliases: ["r"],
     description: "Posts a rip image",
     usage: "rip",
     run: async (client, message, args) => {

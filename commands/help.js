@@ -1,8 +1,4 @@
-const { MessageEmbed } = require("discord.js");
-const ascii = require("ascii-table");
-let table = new ascii("Commands");
-
-table.setHeading("Command", "Aliases", "Description");
+const {MessageEmbed} = require("discord.js");
 
 module.exports = {
     name: "help",
@@ -13,18 +9,33 @@ module.exports = {
     run: async (client, message, args) => {
         if (args[0]) {
             return getCMD(client, message, args[0]);
-        } else {
-            return getAll(client, message);
         }
+
+        return getAll(client, message);
     }
 }
 
 function getAll(client, message) {
+    const embed = new MessageEmbed()
+        .setTitle('Commands')
+        .setDescription('List of all commands and their usage')
+
     client.commands.forEach((command, i) => {
-        table.addRow(command.name, command.aliases, command.description)
+
+        if (command.name === 'help') {
+            return;
+        }
+
+        embed
+            .addField(`**Command**:`, `\n\`!${command.name}\``, true)
+            .addField(`\n**Aliases**:`, `${command.aliases.map(a => `\`!${a}\``).join(", ")}`, true)
+            .addField(`**Usage**:`, `${command.usage}`)
+            .addField(`**Description**:`, `${command.description}`)
+
     });
 
-    return message.channel.send("```"+ table.toString() +"```")
+    embed.setFooter(`Syntax: <> = required, [] = optional`);
+    return message.channel.send(embed);
 }
 
 function getCMD(client, message, input) {
