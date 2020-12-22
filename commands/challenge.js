@@ -68,7 +68,7 @@ module.exports = {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'random-deck-image.png');
 
         // send the attachment in the message channel with a content
-        message.channel.send(`${message.author}, ${args[0]}`, attachment).then(function (message) {
+        message.channel.send(`${message.author} is challenging ${secondTeamName}. Fight!`, attachment).then(function (message) {
             message.react("👊")
             message.react("🥊")
         }).catch(function() {
