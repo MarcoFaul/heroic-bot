@@ -2,7 +2,7 @@
 
 module.exports = {
     name: "Vengeful Construct",
-    position: 61, //@TODO: wrong position
+    position: 47,
     description: "Vengeful Construct",
     src: __dirname + '/png/vengeful_construct.png',
     legendary: false,

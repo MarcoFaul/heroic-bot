@@ -2,7 +2,7 @@
 
 module.exports = {
     name: "Brute",
-    position: 47,
+    position: 48,
     description: "Brute",
     src: __dirname + '/png/brute.png',
     legendary: false,
