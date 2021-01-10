@@ -101,6 +101,7 @@ function getRandomMinions(itemsCollection, n, args) {
             continue;
         }
 
+        // add minion if it is not set yet
         if (alreadyFilledMinions.has(item.name) === false) {
             restructuredItems.set(i, item)
             alreadyFilledMinions.set(item.name, 1); // we can hardcode the value
@@ -113,7 +114,8 @@ function getRandomMinions(itemsCollection, n, args) {
             continue;
         }
 
-        if (item.legendary === true) {
+        // legendary or mythical cards can only selected once
+        if (item.legendary === true || item.mythical === true) {
             i--;
             continue;
         }
