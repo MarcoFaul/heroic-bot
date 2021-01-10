@@ -1,11 +1,11 @@
 require('dotenv').config();
+const {prefix} = require("./config.json");
 const {Client, Collection} = require('discord.js');
 const client = new Client({
     disableEveryone: true
 });
 
 
-const prefix = "!";
 client.commands = new Collection();
 client.aliases = new Collection();
 
@@ -20,6 +20,7 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
+    console.log(message.author.id);
     if (message.author.bot) return;
     if (!message.content.startsWith(prefix)) return;
     const commandBody = message.content.slice(prefix.length);
