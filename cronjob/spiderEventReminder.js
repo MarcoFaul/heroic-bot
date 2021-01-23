@@ -31,10 +31,8 @@ function processReminders(client, reminders, startDate, currentDate) {
     reminders.forEach(reminderData => {
         reminderData.events.forEach(guildReminder => {
             let tempStart = startDate;
-
+            
             // @TODO: check prev "-"
-
-
             if (guildReminder.prev) {
                 tempStart.setMinutes(tempStart.getMinutes() - guildReminder.start);
 
@@ -48,11 +46,9 @@ function processReminders(client, reminders, startDate, currentDate) {
             let difference = currentDate.getTime() - tempStart.getTime();
             let resultInMinutes = Math.round(difference / 60000);
 
-            console.log(resultInMinutes);
             // send message if we have the same minute
             if (resultInMinutes === 0) {
-                console.log('joooo');
-                // messageHelper.sendMessageToChannel(client, reminderData.channel, guildReminder.text)
+                messageHelper.sendMessageToChannel(client, reminderData.channel, guildReminder.text)
             }
         })
     });
