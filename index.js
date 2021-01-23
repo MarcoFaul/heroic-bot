@@ -5,22 +5,27 @@ const client = new Client({
     disableEveryone: true
 });
 
-
+// init collections
 client.commands = new Collection();
 client.aliases = new Collection();
+client.guildReminders = new Collection();
+client.soloReminders = new Collection();
 
-["command"].forEach(handler => {
+// fill collections
+["command", "reminders"].forEach(handler => {
     require(`./handlers/${handler}`)(client);
 });
+
+// start npm cron
+require('./cronjob/spiderEventReminder')(client);
 
 
 client.on('ready', () => {
     console.log('I am ready!');
-    console.log(`Logged in as ${client.user.tag}!`);
+    console.log(`Prefix: ${prefix}`);
 });
 
 client.on('message', message => {
-    console.log(message.author.id);
     if (message.author.bot) return;
     if (!message.content.startsWith(prefix)) return;
     const commandBody = message.content.slice(prefix.length);

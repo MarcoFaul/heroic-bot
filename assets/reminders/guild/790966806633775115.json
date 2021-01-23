@@ -1,0 +1,35 @@
+{
+  "channel": "798243289660653579",
+  "events": [
+    {
+      "text": "24h before guild event starts",
+      "start": 1440,
+      "prev": true
+    },
+    {
+      "text": "6h before guild event starts",
+      "start": 360,
+      "prev": true
+    },
+    {
+      "text": "30m before guild event starts",
+      "start": 30,
+      "prev": true
+    },
+    {
+      "text": "1m before guild event starts",
+      "start": 1,
+      "prev": true
+    },
+    {
+      "text": "27h after guild event starts",
+      "start": 1620,
+      "prev": false
+    },
+    {
+      "text": "51h after guild event starts",
+      "start": 3060,
+      "prev": false
+    }
+  ]
+}

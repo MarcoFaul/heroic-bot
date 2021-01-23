@@ -1,0 +1,25 @@
+{
+  "channel": "798243289660653579",
+  "events": [
+    {
+      "text": "24h before solo event starts",
+      "start": 1440,
+      "prev": true
+    },
+    {
+      "text": "6h before solo event starts",
+      "start": 360,
+      "prev": true
+    },
+    {
+      "text": "30m before solo event starts",
+      "start": 30,
+      "prev": true
+    },
+    {
+      "text": "1m before solo event starts",
+      "start": 1,
+      "prev": true
+    }
+  ]
+}
