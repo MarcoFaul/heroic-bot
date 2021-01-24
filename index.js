@@ -9,6 +9,7 @@ const client = new Client({
 client.commands = new Collection();
 client.aliases = new Collection();
 client.guildReminders = new Collection();
+client.guildAttackReminders = new Collection();
 client.soloReminders = new Collection();
 
 // fill collections
@@ -16,8 +17,10 @@ client.soloReminders = new Collection();
     require(`./handlers/${handler}`)(client);
 });
 
-// start npm cron
-require('./cronjob/spiderEventReminder')(client);
+// auto start features
+["spiderEventReminder", "spiderEventCountdown"].forEach(event => {
+    require(`./features/${event}`)(client);
+});
 
 
 client.on('ready', () => {

@@ -1,35 +1,41 @@
 {
-  "channel": "798243289660653579",
+  "channel": "757877778233163826",
   "events": [
     {
       "text": "24h before guild event starts",
       "start": 1440,
-      "prev": true
+      "prev": true,
+      "attack": false
     },
     {
       "text": "6h before guild event starts",
       "start": 360,
-      "prev": true
+      "prev": true,
+      "attack": false
     },
     {
       "text": "30m before guild event starts",
       "start": 30,
-      "prev": true
+      "prev": true,
+      "attack": false
     },
     {
       "text": "1m before guild event starts",
       "start": 1,
-      "prev": true
+      "prev": true,
+      "attack": true
     },
     {
       "text": "27h after guild event starts",
       "start": 1620,
-      "prev": false
+      "prev": false,
+      "attack": true
     },
     {
       "text": "51h after guild event starts",
       "start": 3060,
-      "prev": false
+      "prev": false,
+      "attack": true
     }
   ]
 }

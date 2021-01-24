@@ -11,8 +11,7 @@ module.exports = (client) => {
     var soloEventStartDate = new Date(config.soloSpiderEventStart);
     var guildEventStartDate = new Date(config.guildSpiderEventStart);
 
-    // cron.schedule('* * * * *
-    cron.schedule('*/10 * * * * *', () => {
+    cron.schedule('* * * * *', () => {
 
         var currentDate = new Date();
         processReminders(client, client.guildReminders, guildEventStartDate, currentDate);
@@ -31,17 +30,14 @@ function processReminders(client, reminders, startDate, currentDate) {
     reminders.forEach(reminderData => {
         reminderData.events.forEach(guildReminder => {
             let tempStart = startDate;
-            
-            // @TODO: check prev "-"
+
+
             if (guildReminder.prev) {
                 tempStart.setMinutes(tempStart.getMinutes() - guildReminder.start);
-
-                console.log('prev');
             } else {
                 tempStart.setMinutes(tempStart.getMinutes() + guildReminder.start);
             }
 
-            //@TODO: That should be wrong when prev is true
             // get the different in minutes
             let difference = currentDate.getTime() - tempStart.getTime();
             let resultInMinutes = Math.round(difference / 60000);
