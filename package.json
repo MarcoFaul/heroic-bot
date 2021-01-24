@@ -1,11 +1,11 @@
 {
   "name": "HeroicBot",
   "description": "Heroic Bot",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon node index.js",
-    "start": "node index.js"
+    "dev": "nodemon npm run start",
+    "start": "env TZ='Europe/Berlin' node index.js"
   },
   "dependencies": {
     "ascii-table": "0.0.9",

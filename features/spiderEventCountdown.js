@@ -9,11 +9,10 @@ const getText = (num) => {
     var minutes = (hours - rhours) * 60;
     var rminutes = Math.round(minutes);
 
-    return `${spiderEventMessage} ${rhours}h and ${rminutes}m ...`;
+    return `${spiderEventMessage} ${rhours}h and ${rminutes}m...`;
 }
 
 module.exports = async (client) => {
-
 
     var message = undefined;
 

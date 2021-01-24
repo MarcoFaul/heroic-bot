@@ -2,37 +2,37 @@
   "channel": "757877778233163826",
   "events": [
     {
-      "text": "24h before guild event starts",
+      "text": "24h till the guild event starts",
       "start": 1440,
       "prev": true,
       "attack": false
     },
     {
-      "text": "6h before guild event starts",
+      "text": "6h till the guild event starts",
       "start": 360,
       "prev": true,
       "attack": false
     },
     {
-      "text": "30m before guild event starts",
+      "text": "30m till the guild event starts. Please contribute to the blessings and keep an eye on the chat.",
       "start": 30,
       "prev": true,
       "attack": false
     },
     {
-      "text": "1m before guild event starts",
-      "start": 1,
-      "prev": true,
+      "text": "Spider guild event just started. GL & HF",
+      "start": 0,
+      "prev": false,
       "attack": true
     },
     {
-      "text": "27h after guild event starts",
+      "text": "Second regular attack wave just started. Please watch the discord/ingame chat.",
       "start": 1620,
       "prev": false,
       "attack": true
     },
     {
-      "text": "51h after guild event starts",
+      "text": "Third regular attack wave just started. Please watch the discord/ingame chat.",
       "start": 3060,
       "prev": false,
       "attack": true
