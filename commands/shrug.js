@@ -5,6 +5,6 @@ module.exports = {
     usage: "shrug",
     run: async (client, message, args) => {
         message.delete()
-        message.channel.send(`¯\\_(ツ)_/¯`);
+        message.channel.send(`${message.author.username}: ¯\\_(ツ)_/¯`);
     }
 }
