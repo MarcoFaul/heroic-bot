@@ -1,9 +1,14 @@
 var cron = require('node-cron');
 const config = require("./../config.json");
 const messageHelper = require("./../helper/message");
-let spiderEventMessage = 'The next guild attack is in';
+let spiderEventMessage = 'Next guild attack is in';
 
 const getText = (num) => {
+
+    if (num === 99999999) {
+        return 'Next guild attack time will be announced soon!'
+    }
+
     var hours = (num / 60);
     var rhours = Math.floor(hours);
     var minutes = (hours - rhours) * 60;
@@ -11,8 +16,6 @@ const getText = (num) => {
 
     if ((rhours === 0 && rminutes === 0) || rhours === -0 && rminutes === -0) {
         return 'Attack now!';
-    } else if (isNaN(rhours) && isNaN(rminutes)) {
-        return 'Next attack time will be announced soon!'
     }
 
     return `${spiderEventMessage} ${rhours}h and ${rminutes}m...`;
@@ -25,7 +28,7 @@ module.exports = async (client) => {
     cron.schedule('* * * * *', () => {
 
         client.guildAttackReminders.forEach((nextGuildAttack, key) => {
-            let nearestEvent = undefined;
+            let nearestEvent = -99999999;
             let reminderChannel = undefined;
 
             nextGuildAttack.forEach(nextAttack => {
@@ -39,16 +42,13 @@ module.exports = async (client) => {
 
                 //@TODO: this does not work with multiple server guild attacks
                 reminderChannel = key
-                if (nearestEvent === undefined) {
-                    nearestEvent = 0;
-                }
 
                 // we want to get the lowest negative number for the next attack
                 if (Math.sign(resultInMinutes) !== -1) {
                     return;
                 }
 
-                if (nearestEvent > resultInMinutes) {
+                if (nearestEvent < resultInMinutes) {
                     nearestEvent = resultInMinutes
                 }
             })
