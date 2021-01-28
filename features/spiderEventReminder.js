@@ -9,39 +9,37 @@ const nextSpiderEvent = 14;
 
 module.exports = (client) => {
     cron.schedule('* * * * *', () => {
-        var soloEventStartDate = new Date(config.soloSpiderEventStart);
-        var guildEventStartDate = new Date(config.guildSpiderEventStart);
 
         var currentDate = new Date();
-        processReminders(client, client.guildReminders, guildEventStartDate, currentDate);
-        processReminders(client, client.soloReminders, soloEventStartDate, currentDate);
+        let soloEventStartDate = new Date(config.soloSpiderEventStart);
 
-        soloTempStartDate = soloEventStartDate;
-        soloTempStartDate.setMinutes(soloTempStartDate.getMinutes() + soloEventEndInMinutes);
-        if (soloTempStartDate < currentDate) {
+        processReminders(client, client.guildReminders, config.guildSpiderEventStart, currentDate);
+        processReminders(client, client.soloReminders, config.soloSpiderEventStart, currentDate);
+
+        soloEventStartDate.setMinutes(soloEventStartDate.getMinutes() + soloEventEndInMinutes);
+        if (soloEventStartDate < currentDate) {
             resetReminder()
         }
     });
 }
 
 
-function processReminders(client, reminders, startDate, currentDate) {
+function processReminders(client, reminders, eventStart, currentDate) {
 
     reminders.forEach(reminderData => {
         reminderData.events.forEach(guildReminder => {
-            let tempStart = startDate;
+            var guildEventStartDate = new Date(eventStart);
 
 
             if (guildReminder.prev) {
-                tempStart.setMinutes(tempStart.getMinutes() - guildReminder.start);
+                guildEventStartDate.setMinutes(guildEventStartDate.getMinutes() - guildReminder.start);
             } else {
-                tempStart.setMinutes(tempStart.getMinutes() + guildReminder.start);
+                guildEventStartDate.setMinutes(guildEventStartDate.getMinutes() + guildReminder.start);
             }
 
             // get the different in minutes
-            let difference = currentDate.getTime() - tempStart.getTime();
+            let difference = currentDate.getTime() - guildEventStartDate.getTime();
             let resultInMinutes = Math.round(difference / 60000);
-
             // send message if we have the same minute
             if (resultInMinutes === 0) {
                 messageHelper.sendMessageToChannel(client, reminderData.channel, guildReminder.text)
