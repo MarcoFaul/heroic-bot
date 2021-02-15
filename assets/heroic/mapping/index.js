@@ -1,6 +1,4 @@
 module.exports = {
-    name: "Abomination",
-    list: [],
     getMapping: () => {
         return [
             {'x': 915, 'y': 65, 'w': 135, 'h': 200},

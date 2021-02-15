@@ -7,13 +7,15 @@ const client = new Client({
 // init collections
 client.config = require("./config.json");
 client.commands = new Collection();
+client.heroes = new Collection();
+client.minions = new Collection();
 client.aliases = new Collection();
 client.guildReminders = new Collection();
 client.guildAttackReminders = new Collection();
 client.soloReminders = new Collection();
 
 // fill collections
-["command", "reminders"].forEach(handler => {
+["command", "reminders", "heroes", "minions"].forEach(handler => {
     require(`./handlers/${handler}`)(client);
 });
 

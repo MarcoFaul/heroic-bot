@@ -1,24 +1,8 @@
 const Discord = require('discord.js');
 const Canvas = require('canvas');
-const {readdirSync} = require("fs");
 const {getMapping} = require("./../assets/heroic/mapping/index");
 
 const maxMinions = 12;
-heroCollection = new Discord.Collection();
-minionCollection = new Discord.Collection();
-
-const heroes = readdirSync(__dirname + "/../assets/heroic/heroes/").filter(file => file.endsWith(".js"));
-const minions = readdirSync(__dirname + "/../assets/heroic/minions/").filter(file => file.endsWith(".js"));
-
-for (const heroFile of heroes) {
-    let hero = require(__dirname + `/../assets/heroic/heroes/${heroFile}`);
-    heroCollection.set(hero.position, hero)
-}
-
-for (const minionFile of minions) {
-    let minion = require(__dirname + `/../assets/heroic/minions/${minionFile}`);
-    minionCollection.set(minion.position, minion)
-}
 
 module.exports = {
     name: "challenge",
@@ -37,10 +21,10 @@ module.exports = {
         }
 
         // get random hero and minions for both teams
-        const team1Hero = getRandomItem(heroCollection);
-        const team2Hero = getRandomItem(heroCollection);
-        const team1Minions = getRandomMinions(minionCollection, maxMinions, args).array();
-        const team2Minions = getRandomMinions(minionCollection, maxMinions, args).array();
+        const team1Hero = getRandomItem(client.heroes);
+        const team2Hero = getRandomItem(client.heroes);
+        const team1Minions = getRandomMinions(client.minions, maxMinions, args).array();
+        const team2Minions = getRandomMinions(client.minions, maxMinions, args).array();
 
         // create background image
         const canvas = Canvas.createCanvas(2000, 1000);

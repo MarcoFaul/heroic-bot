@@ -3,7 +3,7 @@ const path = require("path");
 var cron = require('node-cron');
 const messageHelper = require("./../helper/message");
 
-const soloEventEndInMinutes = 6240;
+const soloEventEndInMinutes = 4800;
 const nextSpiderEvent = 14;
 
 module.exports = (client) => {
@@ -59,6 +59,14 @@ function resetReminder(client) {
 
     config.soloSpiderEventStart = soloEventNextStart;
     config.guildSpiderEventStart = guildEventNextStart;
+
+    const nextSpiderHero = config.nextSpiderEventHero + 1;
+
+    if (client.heroes.has(nextSpiderHero)) {
+        config.nextSpiderEventHero = nextSpiderHero;
+    } else {
+        config.nextSpiderEventHero = 1;
+    }
 
     writeFileSync(path.join(__dirname, '/../config.json'), JSON.stringify(config));
     client.config = config;

@@ -25,8 +25,6 @@ module.exports = async (client) => {
     var message = undefined;
 
     cron.schedule('* * * * *', () => {
-        console.log(client.config);
-return;
         client.guildAttackReminders.forEach((nextGuildAttack, key) => {
             let nearestEvent = -99999999;
             let reminderChannel = undefined;
