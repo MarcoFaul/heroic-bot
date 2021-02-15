@@ -1,11 +1,11 @@
 require('dotenv').config();
-const {prefix} = require("./config.json");
 const {Client, Collection} = require('discord.js');
 const client = new Client({
     disableEveryone: true
 });
 
 // init collections
+client.config = require("./config.json");
 client.commands = new Collection();
 client.aliases = new Collection();
 client.guildReminders = new Collection();
@@ -25,13 +25,13 @@ client.soloReminders = new Collection();
 
 client.on('ready', () => {
     console.log('I am ready!');
-    console.log(`Prefix: ${prefix}`);
+    console.log(`Prefix: ${client.config.prefix}`);
 });
 
 client.on('message', message => {
     if (message.author.bot) return;
-    if (!message.content.startsWith(prefix)) return;
-    const commandBody = message.content.slice(prefix.length);
+    if (!message.content.startsWith(client.config.prefix)) return;
+    const commandBody = message.content.slice(client.config.prefix.length);
     const args = commandBody.split(' ');
     const command = args.shift().toLowerCase();
 

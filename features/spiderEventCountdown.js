@@ -1,5 +1,4 @@
 var cron = require('node-cron');
-const config = require("./../config.json");
 const messageHelper = require("./../helper/message");
 let spiderEventMessage = 'Next guild attack is in';
 
@@ -26,13 +25,14 @@ module.exports = async (client) => {
     var message = undefined;
 
     cron.schedule('* * * * *', () => {
-
+        console.log(client.config);
+return;
         client.guildAttackReminders.forEach((nextGuildAttack, key) => {
             let nearestEvent = -99999999;
             let reminderChannel = undefined;
 
             nextGuildAttack.forEach(nextAttack => {
-                tempStart = new Date(config.guildSpiderEventStart);
+                tempStart = new Date(client.config.guildSpiderEventStart);
                 tempCurrentDate = new Date();
                 tempStart.setMinutes(tempStart.getMinutes() + nextAttack.start);
 

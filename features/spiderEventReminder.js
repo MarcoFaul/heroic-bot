@@ -1,7 +1,6 @@
 const {writeFileSync} = require("fs");
 const path = require("path");
 var cron = require('node-cron');
-const config = require("./../config.json");
 const messageHelper = require("./../helper/message");
 
 const soloEventEndInMinutes = 6240;
@@ -9,8 +8,8 @@ const nextSpiderEvent = 14;
 
 module.exports = (client) => {
     cron.schedule('* * * * *', () => {
-
         var currentDate = new Date();
+        let config = client.config;
         let soloEventStartDate = new Date(config.soloSpiderEventStart);
 
         processReminders(client, client.guildReminders, config.guildSpiderEventStart, currentDate);
@@ -18,7 +17,7 @@ module.exports = (client) => {
 
         soloEventStartDate.setMinutes(soloEventStartDate.getMinutes() + soloEventEndInMinutes);
         if (soloEventStartDate < currentDate) {
-            resetReminder()
+            resetReminder(client)
         }
     });
 }
@@ -48,18 +47,19 @@ function processReminders(client, reminders, eventStart, currentDate) {
     });
 }
 
-function resetReminder() {
+function resetReminder(client) {
+    let config = client.config;
     var soloEventStartDate = new Date(config.soloSpiderEventStart);
     var guildEventStartDate = new Date(config.guildSpiderEventStart);
-
     soloEventStartDate.setDate(soloEventStartDate.getDate() + nextSpiderEvent);
     guildEventStartDate.setDate(guildEventStartDate.getDate() + nextSpiderEvent);
 
-    var soloEventNextStart = soloEventStartDate.getFullYear() + "-" + ("0" + (soloEventStartDate.getMonth() + 1)).slice(-2) + "-" + ("0" + soloEventStartDate.getDay()).slice(-2) + " " + soloEventStartDate.getHours() + ":" + ("0" + soloEventStartDate.getMinutes()).slice(-2);
-    var guildEventNextStart = guildEventStartDate.getFullYear() + "-" + ("0" + (guildEventStartDate.getMonth() + 1)).slice(-2) + "-" + ("0" + guildEventStartDate.getDay()).slice(-2) + " " + guildEventStartDate.getHours() + ":" + ("0" + guildEventStartDate.getMinutes()).slice(-2);
+    var soloEventNextStart = soloEventStartDate.getFullYear() + "-" + ("0" + (soloEventStartDate.getMonth() + 1)).slice(-2) + "-" + ("0" + soloEventStartDate.getDate()).slice(-2) + " " + soloEventStartDate.getHours() + ":" + ("0" + soloEventStartDate.getMinutes()).slice(-2);
+    var guildEventNextStart = guildEventStartDate.getFullYear() + "-" + ("0" + (guildEventStartDate.getMonth() + 1)).slice(-2) + "-" + ("0" + guildEventStartDate.getDate()).slice(-2) + " " + guildEventStartDate.getHours() + ":" + ("0" + guildEventStartDate.getMinutes()).slice(-2);
 
     config.soloSpiderEventStart = soloEventNextStart;
     config.guildSpiderEventStart = guildEventNextStart;
 
     writeFileSync(path.join(__dirname, '/../config.json'), JSON.stringify(config));
+    client.config = config;
 }
