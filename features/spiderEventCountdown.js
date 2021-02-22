@@ -1,6 +1,7 @@
 var cron = require('node-cron');
 const messageHelper = require("./../helper/message");
 let spiderEventMessage = 'Next guild attack is in';
+let hardCodedSpiderEventChannel = '813313881958121512';
 
 const getText = (num) => {
 
@@ -53,16 +54,25 @@ module.exports = async (client) => {
 
             let text = getText(Math.abs(nearestEvent));
 
+
+            if (message === undefined) {
+                try {
+                    message = messageHelper.fetchChannelMessage(client, reminderChannel, hardCodedSpiderEventChannel)
+                } catch (e) {
+                }
+            }
+
             if (message !== undefined) {
                 message.then(msg => {
                     msg.edit(text)
                 })
             } else {
                 message = messageHelper.sendMessageToChannel(client, reminderChannel, text)
+
                 message.then(msg => {
                     msg.react("🔥")
                     msg.react("🕷️")
-                    // msg.react("⚔️️️") //@TODO: this does not work yet
+                    msg.react("⚔")
                     msg.pin();
                 }).catch()
             }
