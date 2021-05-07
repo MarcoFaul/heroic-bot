@@ -14,7 +14,7 @@ module.exports = {
 
         const embed = new Discord.MessageEmbed()
         embed.setTitle('Spider event overview');
-        embed.addField(`**Next hero**:`, `\n\`${client.heroes.get(client.config.nextSpiderEventHero).name}\``, true)
+        embed.addField(`**Next/current hero**:`, `\n\`${client.heroes.get(client.config.nextSpiderEventHero).name}\``, true)
         embed.addField(`**Next guild attack in**:`, `\n\`${getNextGuildCountdown(client)}\``, true)
         embed.addField(`**Hero order**:`, `\n\`${heroOrder}\``, true)
         embed.addField(`**Best advices**:`, `\n\https://www.youtube.com/channel/UCEGGisfbz18_ZoPqH607sdg/featured`, true)
