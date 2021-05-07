@@ -27,12 +27,18 @@
     },
     {
       "text": "Second regular attack wave just started. Please watch the discord/ingame chat.",
-      "start": 1620,
+      "start": 840,
       "prev": false,
       "attack": true
     },
     {
       "text": "Third regular attack wave just started. Please watch the discord/ingame chat.",
+      "start": 1620,
+      "prev": false,
+      "attack": true
+    },
+    {
+      "text": "Fourth regular attack wave just started. Please watch the discord/ingame chat.",
       "start": 3060,
       "prev": false,
       "attack": true
