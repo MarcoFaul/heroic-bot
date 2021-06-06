@@ -1,7 +1,7 @@
 var cron = require('node-cron');
 const messageHelper = require("./../helper/message");
 let spiderEventMessage = 'Next guild attack is in';
-let hardCodedSpiderEventChannel = '813313881958121512';
+let hardCodedSpiderEventChannel = '851107120564011018';
 
 const getText = (num) => {
 
