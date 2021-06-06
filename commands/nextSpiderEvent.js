@@ -19,6 +19,7 @@ module.exports = {
         embed.addField(`**Hero order**:`, `\n\`${heroOrder}\``, true)
         embed.addField(`**Best advices**:`, `\n\https://www.youtube.com/channel/UCEGGisfbz18_ZoPqH607sdg/featured`, true)
 
+        message.delete();
         message.reply(embed);
     }
 }
