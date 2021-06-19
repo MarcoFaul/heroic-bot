@@ -1,3 +1,5 @@
+var express = require("express");
+var app = express();
 require('dotenv').config();
 const {Client, Collection} = require('discord.js');
 const client = new Client({
@@ -47,3 +49,11 @@ client.on('message', message => {
 });
 
 client.login(process.env.BOT_TOKEN);
+
+app.listen(9000, () => {
+    console.log("Server running on port 9000");
+});
+
+app.get("/health", (req, res, next) => {
+    res.json(["Success"]);
+});
