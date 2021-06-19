@@ -50,8 +50,12 @@ client.on('message', message => {
 
 client.login(process.env.BOT_TOKEN);
 
-app.listen(9000, () => {
-    console.log("Server running on port 9000");
+app.listen(process.env.PORT || 80, () => {
+    console.log("Server running on port " + process.env.PORT || 80);
+});
+
+app.get("/", (req, res, next) => {
+    res.json(["Heroic Bot"]);
 });
 
 app.get("/health", (req, res, next) => {
